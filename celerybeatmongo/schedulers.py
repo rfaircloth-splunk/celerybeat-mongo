@@ -31,14 +31,16 @@ class MongoScheduleEntry(ScheduleEntry):
 
         self.args = self._task.args
         self.kwargs = self._task.kwargs
-        self.options = {
-            'queue': self._task.queue,
-            'exchange': self._task.exchange,
-            'routing_key': self._task.routing_key,
-            'expires': self._task.expires,
-            'soft_time_limit': self._task.soft_time_limit,
-            'enabled': self._task.enabled
-        }
+        self.options = self._task.options
+        # = {
+        #     'queue': self._task.queue,
+        #     'exchange': self._task.exchange,
+        #     'routing_key': self._task.routing_key,
+        #     'expires': self._task.expires,
+        #     'soft_time_limit': self._task.soft_time_limit,
+        #     'link': 
+        # }
+        
         if self._task.total_run_count is None:
             self._task.total_run_count = 0
         self.total_run_count = self._task.total_run_count

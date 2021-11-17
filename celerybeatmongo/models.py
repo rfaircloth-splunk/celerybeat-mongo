@@ -91,10 +91,11 @@ class PeriodicTask(DynamicDocument):
     args = ListField()
     kwargs = DictField()
 
-    queue = StringField()
-    exchange = StringField()
-    routing_key = StringField()
-    soft_time_limit = IntField()
+    options = DictField()
+    # queue = StringField()
+    # exchange = StringField()
+    # routing_key = StringField()
+    # soft_time_limit = IntField()
 
     expires = DateTimeField()
     start_after = DateTimeField()
