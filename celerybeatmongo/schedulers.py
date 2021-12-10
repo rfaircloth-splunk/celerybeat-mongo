@@ -121,6 +121,14 @@ class MongoScheduleEntry(ScheduleEntry):
             self.kwargs, self.schedule,
         ))
 
+    def editable_fields_equal(self, other):
+        for attr in ('task', 'args', 'kwargs', 'options', 'schedule'):
+            if getattr(self, attr) != getattr(other, attr):
+                return False
+        if self._task.run_immediately != other._task.run_immediately:
+            return False
+        return True
+
     def reserve(self, entry):
         new_entry = Scheduler.reserve(self, entry)
         return new_entry
