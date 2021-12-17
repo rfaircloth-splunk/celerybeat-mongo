@@ -109,9 +109,7 @@ class MongoScheduleEntry(ScheduleEntry):
                 # Don't recheck
                 return schedules.schedstate(False, None)
         if self._task.run_immediately:
-            # figure out when the schedule would run next anyway
-            _, n = self.schedule.is_due(self.last_run_at)
-            return True, n
+            return True, self.schedule.seconds
         return self.schedule.is_due(self.last_run_at)
 
     def __repr__(self):
