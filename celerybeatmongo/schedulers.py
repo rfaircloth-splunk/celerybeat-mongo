@@ -136,7 +136,6 @@ class MongoScheduleEntry(ScheduleEntry):
             self._task.total_run_count = self.total_run_count
         if self.last_run_at and self._task.last_run_at and self.last_run_at > self._task.last_run_at:
             self._task.last_run_at = self.last_run_at
-        self._task.run_immediately = False
         try:
             return self._task.save(save_condition={})
         except Exception as ex:
