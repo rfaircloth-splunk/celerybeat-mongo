@@ -134,7 +134,7 @@ class MongoScheduleEntry(ScheduleEntry):
     def save(self):
         if self.total_run_count > self._task.total_run_count:
             self._task.total_run_count = self.total_run_count
-        if self.last_run_at and self._task.last_run_at and self.last_run_at > self._task.last_run_at:
+        if self.last_run_at and self._task.last_run_at and self.last_run_at.replace(tzinfo=None) > self._task.last_run_at.replace(tzinfo=None):
             self._task.last_run_at = self.last_run_at
         try:
             return self._task.save(save_condition={})
